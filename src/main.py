@@ -26,12 +26,26 @@ while (True):
         for i in range(len(data.target_names)):
             bucket = df[df['Target'] == i]
             bucket = bucket.iloc[:,[idx_x-1,idx_y-1]].values
-            # hull = ConvexHull(bucket) #Konvex Hull dari python untuk membandingkan hasil
             hull = mch.ConvexHull(bucket)
             # print("HASIL Koordinat : ",hull)
             x, y = zip(*hull)
             plt.plot(x,y,c=colors[i])
             plt.scatter(bucket[:, 0], bucket[:, 1], label=data.target_names[i])
+            plt.legend()
+        
+        plt.figure(figsize = (10, 6))
+        colors = ['b','r','g','p']
+        title = Attributes[idx_x-1] + " vs " + Attributes[idx_y-1] + " (Library Scipy)"
+        plt.title(title)
+        plt.xlabel(data.feature_names[idx_x-1])
+        plt.ylabel(data.feature_names[idx_y-1])
+        for j in range(len(data.target_names)):
+            bucket = df[df['Target'] == j]
+            bucket = bucket.iloc[:,[idx_x-1,idx_y-1]].values
+            hull = ConvexHull(bucket) 
+            plt.scatter(bucket[:, 0], bucket[:, 1], label=data.target_names[j])
+            for simplex in hull.simplices:
+                plt.plot(bucket[simplex, 0], bucket[simplex, 1], colors[j])
             plt.legend()
         break
     elif x == "wine":
@@ -53,12 +67,26 @@ while (True):
         for i in range(len(data.target_names)):
             bucket = df[df['Target'] == i]
             bucket = bucket.iloc[:,[idx_x-1,idx_y-1]].values
-            # hull = ConvexHull(bucket) #Konvex Hull dari python untuk membandingkan hasil
             hull = mch.ConvexHull(bucket)
             # print("HASIL Koordinat : ",hull)
             x, y = zip(*hull)
             plt.plot(x,y,c=colors[i])
             plt.scatter(bucket[:, 0], bucket[:, 1], label=data.target_names[i])
+            plt.legend()
+            
+        plt.figure(figsize = (10, 6))
+        colors = ['b','r','g','p']
+        title = Attributes[idx_x-1] + " vs " + Attributes[idx_y-1] + " (Library Scipy)"
+        plt.title(title)
+        plt.xlabel(data.feature_names[idx_x-1])
+        plt.ylabel(data.feature_names[idx_y-1])
+        for j in range(len(data.target_names)):
+            bucket = df[df['Target'] == j]
+            bucket = bucket.iloc[:,[idx_x-1,idx_y-1]].values
+            hull = ConvexHull(bucket) 
+            plt.scatter(bucket[:, 0], bucket[:, 1], label=data.target_names[j])
+            for simplex in hull.simplices:
+                plt.plot(bucket[simplex, 0], bucket[simplex, 1], colors[j])
             plt.legend()
         break
     elif x == "breast_cancer":
@@ -80,12 +108,25 @@ while (True):
         for i in range(len(data.target_names)):
             bucket = df[df['Target'] == i]
             bucket = bucket.iloc[:,[idx_x-1,idx_y-1]].values
-            # hull = ConvexHull(bucket) #Konvex Hull dari python untuk membandingkan hasil
             hull = mch.ConvexHull(bucket)
             # print("HASIL Koordinat : ",hull)
             x, y = zip(*hull)
             plt.plot(x,y,c=colors[i])
             plt.scatter(bucket[:, 0], bucket[:, 1], label=data.target_names[i])
+            plt.legend()
+        plt.figure(figsize = (10, 6))
+        colors = ['b','r','g','p']
+        title = Attributes[idx_x-1] + " vs " + Attributes[idx_y-1] + " (Library Scipy)"
+        plt.title(title)
+        plt.xlabel(data.feature_names[idx_x-1])
+        plt.ylabel(data.feature_names[idx_y-1])
+        for j in range(len(data.target_names)):
+            bucket = df[df['Target'] == j]
+            bucket = bucket.iloc[:,[idx_x-1,idx_y-1]].values
+            hull = ConvexHull(bucket) 
+            plt.scatter(bucket[:, 0], bucket[:, 1], label=data.target_names[j])
+            for simplex in hull.simplices:
+                plt.plot(bucket[simplex, 0], bucket[simplex, 1], colors[j])
             plt.legend()
         break
     else:
